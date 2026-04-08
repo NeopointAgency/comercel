@@ -27,9 +27,9 @@ export default function App() {
     // Hero Animations
     const heroTl = gsap.timeline({ defaults: { ease: 'power4.out', duration: 1.2 } });
     heroTl.from('.hero-logo', { y: -50, opacity: 0, delay: 0.5 })
-          .from('.hero-title', { y: 100, opacity: 0, stagger: 0.2 }, '-=0.8')
-          .from('.hero-desc', { opacity: 0, y: 30 }, '-=0.6')
-          .from('.hero-btn', { scale: 0.8, opacity: 0 }, '-=0.6');
+      .from('.hero-title', { y: 100, opacity: 0, stagger: 0.2 }, '-=0.8')
+      .from('.hero-desc', { opacity: 0, y: 30 }, '-=0.6')
+      .from('.hero-btn', { scale: 0.8, opacity: 0 }, '-=0.6');
 
     // Product Cards Reveal Staggered (Más robusto con Batch)
     ScrollTrigger.batch('.product-card', {
@@ -56,13 +56,13 @@ export default function App() {
     });
 
     statsTl.from('.stats-title', { y: 40, opacity: 0, duration: 1, ease: 'power3.out' })
-           .from('.stat-card', { 
-             y: 50, 
-             opacity: 0, 
-             stagger: 0.2, 
-             duration: 0.8, 
-             ease: 'power3.out' 
-           }, '-=0.6');
+      .from('.stat-card', {
+        y: 50,
+        opacity: 0,
+        stagger: 0.2,
+        duration: 0.8,
+        ease: 'power3.out'
+      }, '-=0.6');
 
     // Animación de los números sincronizada con el scroll
     const statsItems = gsap.utils.toArray<HTMLElement>('.stat-number');
@@ -70,7 +70,7 @@ export default function App() {
       const finalValue = parseInt(stat.getAttribute('data-value') || stat.innerText.replace(/[^0-9]/g, ''));
       const suffix = stat.innerText.includes('+') ? '+' : (stat.innerText.includes('%') ? '%' : '');
       const obj = { value: 0 };
-      
+
       gsap.to(obj, {
         scrollTrigger: {
           trigger: stat,
@@ -111,25 +111,25 @@ export default function App() {
 
 
   const products = [
-    { 
-      name: 'Ajo', 
-      image: '/products/ajo.png', 
-      color: 'bg-[#F1E9DB]' 
+    {
+      name: 'Ajo',
+      image: '/products/ajo.png',
+      color: 'bg-[#F1E9DB]'
     },
-    { 
-      name: 'Chiles Secos', 
-      image: '/products/chiles-secos.png', 
-      color: 'bg-[#F9FAFB]' 
+    {
+      name: 'Chiles Secos',
+      image: '/products/chiles-secos.png',
+      color: 'bg-[#F9FAFB]'
     },
-    { 
-      name: 'Legumbres', 
-      image: '/products/legumbres.png', 
-      color: 'bg-[#FDFCFB]' 
+    {
+      name: 'Legumbres',
+      image: '/products/legumbres.png',
+      color: 'bg-[#FDFCFB]'
     },
-    { 
-      name: 'Especias', 
-      image: '/products/especias.png', 
-      color: 'bg-[#FFF9F5]' 
+    {
+      name: 'Especias',
+      image: '/products/especias.png',
+      color: 'bg-[#FFF9F5]'
     },
   ];
 
@@ -188,24 +188,24 @@ export default function App() {
         {/* Hero Content */}
         <div className="relative z-10 flex-grow flex flex-col justify-end px-6 pb-24">
           <div className="max-w-7xl mx-auto w-full">
-            <motion.div 
+            <motion.div
               variants={containerVariants}
               initial="hidden"
               animate="visible"
               className="max-w-3xl"
             >
-                <h1 className="text-[48px] md:text-[80px] font-black leading-[1.1] mb-6 text-white hero-title">
-                  Detrás de un <br />
-                  buen negocio, <br />
-                  <span className="text-comercel-green">hay compras <br />bien hechas</span>
-                </h1>
+              <h1 className="text-[48px] md:text-[80px] font-black leading-[1.1] mb-6 text-white hero-title">
+                Detrás de un <br />
+                buen negocio, <br />
+                <span className="text-comercel-green">hay compras <br />bien hechas</span>
+              </h1>
 
-                <p className="text-lg md:text-xl text-white/90 leading-relaxed mb-10 max-w-xl font-medium hero-desc">
-                  En Comercel te ayudamos a surtir tu negocio con buen servicio, precios competitivos y seguimiento real.
-                </p>
+              <p className="text-lg md:text-xl text-white/90 leading-relaxed mb-10 max-w-xl font-medium hero-desc">
+                En Comercel te ayudamos a surtir tu negocio con buen servicio, precios competitivos y seguimiento real.
+              </p>
 
               <div className="flex justify-center md:justify-start hero-btn">
-                <button 
+                <button
                   onClick={openCatalog}
                   className="group px-10 py-4 bg-black/70 backdrop-blur-md border border-white/10 text-white font-bold rounded-full hover:bg-comercel-green transition-all flex items-center justify-center gap-3"
                 >
@@ -242,21 +242,21 @@ export default function App() {
               Ver todos los productos <ArrowRight className="w-5 h-5" />
             </button>
           </div>
-          
+
           <div className="product-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {products.map((product, index) => (
-              <div 
+              <div
                 key={product.name}
                 className={`product-card opacity-0 group relative overflow-hidden rounded-[40px] ${product.color} aspect-[4/5] flex flex-col items-center justify-between p-10 cursor-pointer hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 border border-comercel-dark/5`}
               >
                 <div className="w-full aspect-square flex items-center justify-center mb-4">
-                  <img 
-                    src={product.image} 
+                  <img
+                    src={product.image}
                     alt={product.name}
                     className="max-w-[90%] max-h-[90%] object-contain drop-shadow-xl group-hover:scale-110 transition-transform duration-500"
                   />
                 </div>
-                
+
                 <div className="text-center w-full">
                   <h4 className="text-2xl md:text-3xl font-black text-comercel-dark mb-2 tracking-tighter">
                     {product.name}
@@ -331,8 +331,8 @@ export default function App() {
             </div>
 
             <div className="stats-img-container rounded-[60px] overflow-hidden shadow-2xl max-w-5xl mx-auto">
-              <img 
-                src="/operacion.jpeg" 
+              <img
+                src="/operacion.jpeg"
                 alt="Operación logistica de Comercel"
                 className="w-full h-auto"
               />
@@ -349,13 +349,13 @@ export default function App() {
             </h2>
 
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <button 
+              <button
                 onClick={openCatalog}
                 className="px-12 py-5 bg-comercel-dark text-white font-bold rounded-2xl hover:bg-black transition-all shadow-xl shadow-comercel-dark/10"
               >
                 Ver catálogo completo
               </button>
-              <a 
+              <a
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -415,14 +415,14 @@ export default function App() {
             className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8"
           >
             {/* Backdrop */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setShowCatalog(false)}
-              className="absolute inset-0 bg-black/90 backdrop-blur-sm" 
+              className="absolute inset-0 bg-black/90 backdrop-blur-sm"
             />
-            
+
             {/* Modal Content */}
             <motion.div
               initial={{ scale: 0.9, opacity: 0, y: 20 }}
@@ -432,15 +432,15 @@ export default function App() {
             >
               {/* Modal Header */}
               <div className="absolute top-6 right-6 z-30 flex gap-3">
-                <a 
-                  href="/catalogo.pdf" 
+                <a
+                  href="/catalogo.pdf"
                   download
                   className="p-3 bg-white/90 hover:bg-comercel-green hover:text-white text-comercel-dark rounded-full transition-all shadow-lg backdrop-blur-md flex items-center justify-center"
                   title="Descargar catálogo"
                 >
                   <Download className="w-6 h-6" />
                 </a>
-                <button 
+                <button
                   onClick={() => setShowCatalog(false)}
                   className="p-3 bg-black/50 hover:bg-red-500 text-white rounded-full transition-colors backdrop-blur-md"
                 >
@@ -452,24 +452,24 @@ export default function App() {
               {isMobile ? (
                 <div className="flex-grow flex flex-col items-center justify-center p-8 bg-comercel-gray/30">
                   <div className="w-48 h-64 bg-white shadow-2xl rounded-2xl mb-8 flex items-center justify-center border border-comercel-dark/10 overflow-hidden relative">
-                     <div className="absolute inset-0 bg-gradient-to-tr from-comercel-green/20 to-transparent" />
-                     <BookOpen className="w-16 h-16 text-comercel-green relative z-10" />
+                    <div className="absolute inset-0 bg-gradient-to-tr from-comercel-green/20 to-transparent" />
+                    <BookOpen className="w-16 h-16 text-comercel-green relative z-10" />
                   </div>
                   <h3 className="text-2xl font-black text-comercel-dark mb-4 text-center">Catálogo Comercial 2026</h3>
                   <p className="text-comercel-dark/60 text-center mb-10 max-w-xs">
                     Para una mejor experiencia en dispositivos móviles, abre el catálogo en pantalla completa.
                   </p>
                   <div className="flex flex-col gap-4 w-full max-w-xs">
-                    <a 
-                      href="/catalogo.pdf" 
-                      target="_blank" 
+                    <a
+                      href="/catalogo.pdf"
+                      target="_blank"
                       rel="noopener noreferrer"
                       className="w-full py-5 bg-comercel-green text-white font-bold rounded-2xl flex items-center justify-center gap-3 shadow-xl shadow-comercel-green/20 hover:scale-[1.02] transition-transform active:scale-95"
                     >
                       <ExternalLink className="w-6 h-6" />
                       Ver Catálogo Completo
                     </a>
-                    <a 
+                    <a
                       href={whatsappUrl}
                       target="_blank"
                       rel="noopener noreferrer"
@@ -478,7 +478,7 @@ export default function App() {
                       <MessageCircle className="w-5 h-5" />
                       Preguntar por WhatsApp
                     </a>
-                    <button 
+                    <button
                       onClick={() => setShowCatalog(false)}
                       className="w-full py-2 text-comercel-dark/50 font-bold hover:text-comercel-dark transition-colors text-sm"
                     >
