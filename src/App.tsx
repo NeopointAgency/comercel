@@ -1,5 +1,6 @@
-import React, { useState, useRef } from 'react';
-import { Menu, MessageCircle, ArrowRight, ShieldCheck, Zap, TrendingUp, Users, BookOpen, X, Loader2 } from 'lucide-react';
+import React, { useState, useRef, useEffect } from 'react';
+import { Menu, MessageCircle, ArrowRight, ShieldCheck, Zap, TrendingUp, Users, BookOpen, X, Loader2, Download, ExternalLink } from 'lucide-react';
+
 import { motion, AnimatePresence } from 'motion/react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -11,6 +12,16 @@ export default function App() {
   const container = useRef<HTMLDivElement>(null);
   const [showCatalog, setShowCatalog] = useState(false);
   const [loadingPdf, setLoadingPdf] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768 || /iPhone|iPad|iPod|Android/i.test(navigator.userAgent));
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   useGSAP(() => {
     // Hero Animations
@@ -321,10 +332,9 @@ export default function App() {
 
             <div className="stats-img-container rounded-[60px] overflow-hidden shadow-2xl max-w-5xl mx-auto">
               <img 
-                src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=1200" 
-                alt="Logística y distribución"
+                src="/operacion.jpeg" 
+                alt="Operación logistica de Comercel"
                 className="w-full h-auto"
-                referrerPolicy="no-referrer"
               />
             </div>
           </div>
@@ -411,33 +421,73 @@ export default function App() {
               className="relative w-full max-w-5xl h-[85vh] bg-white rounded-[40px] overflow-hidden shadow-2xl flex flex-col"
             >
               {/* Modal Header */}
-              <div className="absolute top-6 right-6 z-10">
+              <div className="absolute top-6 right-6 z-30 flex gap-3">
+                <a 
+                  href="/catalogo.pdf" 
+                  download
+                  className="p-3 bg-white/90 hover:bg-comercel-green hover:text-white text-comercel-dark rounded-full transition-all shadow-lg backdrop-blur-md flex items-center justify-center"
+                  title="Descargar catálogo"
+                >
+                  <Download className="w-6 h-6" />
+                </a>
                 <button 
                   onClick={() => setShowCatalog(false)}
-                  className="p-3 bg-black/50 hover:bg-comercel-green text-white rounded-full transition-colors backdrop-blur-md"
+                  className="p-3 bg-black/50 hover:bg-red-500 text-white rounded-full transition-colors backdrop-blur-md"
                 >
                   <X className="w-6 h-6" />
                 </button>
               </div>
 
-              {/* Loading State */}
-              {loadingPdf && (
-                <div className="absolute inset-0 flex flex-col items-center justify-center bg-white z-20">
-                  <Loader2 className="w-12 h-12 text-comercel-green animate-spin mb-4" />
-                  <p className="text-comercel-dark font-bold animate-pulse text-lg tracking-tight">Cargando catálogo...</p>
+              {/* Mobile Friendly View */}
+              {isMobile ? (
+                <div className="flex-grow flex flex-col items-center justify-center p-8 bg-comercel-gray/30">
+                  <div className="w-48 h-64 bg-white shadow-2xl rounded-2xl mb-8 flex items-center justify-center border border-comercel-dark/10 overflow-hidden relative">
+                     <div className="absolute inset-0 bg-gradient-to-tr from-comercel-green/20 to-transparent" />
+                     <BookOpen className="w-16 h-16 text-comercel-green relative z-10" />
+                  </div>
+                  <h3 className="text-2xl font-black text-comercel-dark mb-4 text-center">Catálogo Comercial 2026</h3>
+                  <p className="text-comercel-dark/60 text-center mb-10 max-w-xs">
+                    Para una mejor experiencia en dispositivos móviles, abre el catálogo en pantalla completa.
+                  </p>
+                  <div className="flex flex-col gap-4 w-full max-w-xs">
+                    <a 
+                      href="/catalogo.pdf" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="w-full py-5 bg-comercel-green text-white font-bold rounded-2xl flex items-center justify-center gap-3 shadow-xl shadow-comercel-green/20 hover:scale-[1.02] transition-transform active:scale-95"
+                    >
+                      <ExternalLink className="w-6 h-6" />
+                      Ver Catálogo Completo
+                    </a>
+                    <button 
+                      onClick={() => setShowCatalog(false)}
+                      className="w-full py-4 text-comercel-dark/50 font-bold hover:text-comercel-dark transition-colors"
+                    >
+                      Cerrar
+                    </button>
+                  </div>
                 </div>
-              )}
+              ) : (
+                <>
+                  {/* Loading State */}
+                  {loadingPdf && (
+                    <div className="absolute inset-0 flex flex-col items-center justify-center bg-white z-20">
+                      <Loader2 className="w-12 h-12 text-comercel-green animate-spin mb-4" />
+                      <p className="text-comercel-dark font-bold animate-pulse text-lg tracking-tight">Cargando catálogo...</p>
+                    </div>
+                  )}
 
-              {/* PDF Viewer */}
-              <iframe
-                src="/catalogo.pdf#view=FitH"
-                className="w-full h-full border-none relative z-10"
-                onLoad={() => {
-                  // Pequeño delay manual para asegurar que el iframe ya renderizó
-                  setTimeout(() => setLoadingPdf(false), 500);
-                }}
-                title="Catálogo Comercel"
-              />
+                  {/* PDF Viewer */}
+                  <iframe
+                    src="/catalogo.pdf#view=FitH"
+                    className="w-full h-full border-none relative z-10"
+                    onLoad={() => {
+                      setTimeout(() => setLoadingPdf(false), 500);
+                    }}
+                    title="Catálogo Comercel"
+                  />
+                </>
+              )}
             </motion.div>
           </motion.div>
         )}
