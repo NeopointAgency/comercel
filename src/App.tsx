@@ -107,6 +107,9 @@ export default function App() {
     setShowCatalog(true);
   };
 
+  const whatsappUrl = `https://wa.me/5219987167780?text=${encodeURIComponent("Hola, vengo del sitio de Comercel, me pongo en contacto en este medio.")}`;
+
+
   const products = [
     { 
       name: 'Ajo', 
@@ -352,10 +355,15 @@ export default function App() {
               <button className="px-12 py-5 bg-comercel-dark text-white font-bold rounded-2xl hover:bg-black transition-all shadow-xl shadow-comercel-dark/10">
                 Ver catálogo completo
               </button>
-              <button className="px-12 py-5 bg-comercel-green text-white font-bold rounded-2xl flex items-center justify-center gap-3 hover:bg-green-600 transition-all shadow-xl shadow-comercel-green/20">
+              <a 
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-12 py-5 bg-comercel-green text-white font-bold rounded-2xl flex items-center justify-center gap-3 hover:bg-green-600 transition-all shadow-xl shadow-comercel-green/20"
+              >
                 <MessageCircle className="w-6 h-6" />
                 Hablar con un experto
-              </button>
+              </a>
             </div>
           </div>
         </section>
@@ -459,9 +467,18 @@ export default function App() {
                       <ExternalLink className="w-6 h-6" />
                       Ver Catálogo Completo
                     </a>
+                    <a 
+                      href={whatsappUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full py-4 bg-white border border-comercel-green text-comercel-green font-bold rounded-2xl flex items-center justify-center gap-3 hover:bg-comercel-green/5 transition-colors"
+                    >
+                      <MessageCircle className="w-5 h-5" />
+                      Preguntar por WhatsApp
+                    </a>
                     <button 
                       onClick={() => setShowCatalog(false)}
-                      className="w-full py-4 text-comercel-dark/50 font-bold hover:text-comercel-dark transition-colors"
+                      className="w-full py-2 text-comercel-dark/50 font-bold hover:text-comercel-dark transition-colors text-sm"
                     >
                       Cerrar
                     </button>
@@ -492,6 +509,24 @@ export default function App() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* WhatsApp Floating Button */}
+      <motion.a
+        href={whatsappUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        initial={{ scale: 0, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ delay: 2, duration: 0.5, type: 'spring' }}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+        className="fixed bottom-8 right-8 z-[90] w-16 h-16 bg-[#25D366] text-white rounded-full flex items-center justify-center shadow-2xl shadow-[#25D366]/40 hover:bg-[#20ba5a] transition-colors group"
+      >
+        <div className="absolute right-full mr-4 bg-white text-comercel-dark px-4 py-2 rounded-xl text-sm font-bold shadow-xl opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+          ¿En qué podemos ayudarte?
+        </div>
+        <MessageCircle className="w-8 h-8 fill-current" />
+      </motion.a>
     </div>
   );
 }
