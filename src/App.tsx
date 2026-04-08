@@ -310,6 +310,13 @@ export default function App() {
         {/* Stats Section */}
         <section className="stats-section px-6 py-32 max-w-7xl mx-auto text-center">
           <div>
+            <div className="stats-img-container rounded-[60px] overflow-hidden shadow-2xl max-w-5xl mx-auto mb-16">
+              <img
+                src="/operacion.jpeg"
+                alt="Operación logistica de Comercel"
+                className="w-full h-auto"
+              />
+            </div>
             <h2 className="stats-title text-5xl md:text-6xl font-extrabold mb-16 leading-tight text-comercel-dark">
               Respaldo que <br />
               fortalece tu operación
@@ -330,13 +337,7 @@ export default function App() {
               </div>
             </div>
 
-            <div className="stats-img-container rounded-[60px] overflow-hidden shadow-2xl max-w-5xl mx-auto">
-              <img
-                src="/operacion.jpeg"
-                alt="Operación logistica de Comercel"
-                className="w-full h-auto"
-              />
-            </div>
+
           </div>
         </section>
 
