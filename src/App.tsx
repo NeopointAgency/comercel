@@ -46,16 +46,38 @@ export default function App() {
       start: 'top 90%'
     });
 
+    // Stats Image Expansion/Shrink Animation
+    gsap.fromTo(".stats-img-container", 
+      { 
+        width: "100%",
+        borderRadius: 0,
+        scale: 1.1
+      },
+      { 
+        width: isMobile ? "90%" : "85%",
+        maxWidth: "1024px",
+        borderRadius: isMobile ? 30 : 60,
+        scale: 1,
+        ease: "none",
+        scrollTrigger: {
+          trigger: ".stats-section",
+          start: "top bottom",
+          end: "top top+=100",
+          scrub: 1
+        }
+      }
+    );
+
     // Stats Section & Counters coordinated reveal
     const statsTl = gsap.timeline({
       scrollTrigger: {
-        trigger: '.stats-section',
-        start: 'top 85%',
-        toggleActions: 'play none none none'
+        trigger: ".stats-section",
+        start: "top 85%",
+        toggleActions: "play none none none"
       }
     });
 
-    statsTl.from('.stats-title', { y: 40, opacity: 0, duration: 1, ease: 'power3.out' })
+    statsTl.from(".stats-title", { y: 40, opacity: 0, duration: 1, ease: "power3.out" })
       .from('.stat-card', {
         y: 50,
         opacity: 0,
@@ -308,15 +330,18 @@ export default function App() {
         </section>
 
         {/* Stats Section */}
-        <section className="stats-section px-6 py-32 max-w-7xl mx-auto text-center">
-          <div>
-            <div className="stats-img-container rounded-[60px] overflow-hidden shadow-2xl max-w-5xl mx-auto mb-16">
+        <section className="stats-section py-32 overflow-hidden bg-white">
+          <div className="stats-img-wrapper w-full mb-20 flex justify-center">
+            <div className="stats-img-container overflow-hidden shadow-2xl relative">
               <img
                 src="/operacion.jpeg"
                 alt="Operación logistica de Comercel"
-                className="w-full h-auto"
+                className="w-full h-full object-cover"
               />
             </div>
+          </div>
+          
+          <div className="max-w-7xl mx-auto px-6 text-center">
             <h2 className="stats-title text-5xl md:text-6xl font-extrabold mb-16 leading-tight text-comercel-dark">
               Respaldo que <br />
               fortalece tu operación
@@ -336,8 +361,6 @@ export default function App() {
                 <p className="text-gray-500 font-bold uppercase tracking-widest text-sm">Calidad Certificada</p>
               </div>
             </div>
-
-
           </div>
         </section>
 
