@@ -182,9 +182,6 @@ export default function App() {
             <div className="h-12 hero-logo">
               <img src="/logo.png" alt="Comercel Logo" className="h-full w-auto object-contain" />
             </div>
-            <button className="p-2 text-comercel-green">
-              <Menu className="w-10 h-10" />
-            </button>
           </div>
         </header>
 
@@ -323,9 +320,9 @@ export default function App() {
                 <p className="text-6xl font-extrabold text-comercel-green mb-4 stat-number" data-value="300">+300</p>
                 <p className="text-gray-500 font-bold uppercase tracking-widest text-sm">Negocios abastecidos</p>
               </div>
-              <div className="stat-card p-12 bg-comercel-dark text-white rounded-[40px] shadow-2xl shadow-comercel-dark/20">
-                <p className="text-6xl font-extrabold text-comercel-green mb-4 stat-number" data-value="12">+12</p>
-                <p className="opacity-60 font-bold uppercase tracking-widest text-sm">Años de experiencia</p>
+              <div className="stat-card p-12 bg-comercel-green text-white rounded-[40px] shadow-2xl shadow-comercel-green/20">
+                <p className="text-6xl font-extrabold text-white mb-4 stat-number" data-value="12">+12</p>
+                <p className="opacity-80 font-bold uppercase tracking-widest text-sm">Años de experiencia</p>
               </div>
               <div className="stat-card p-12 bg-comercel-gray rounded-[40px] border border-comercel-dark/5 shadow-sm">
                 <p className="text-6xl font-extrabold text-comercel-green mb-4 stat-number" data-value="100">100%</p>
@@ -352,7 +349,10 @@ export default function App() {
             </h2>
 
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <button className="px-12 py-5 bg-comercel-dark text-white font-bold rounded-2xl hover:bg-black transition-all shadow-xl shadow-comercel-dark/10">
+              <button 
+                onClick={openCatalog}
+                className="px-12 py-5 bg-comercel-dark text-white font-bold rounded-2xl hover:bg-black transition-all shadow-xl shadow-comercel-dark/10"
+              >
                 Ver catálogo completo
               </button>
               <a 
@@ -400,7 +400,9 @@ export default function App() {
         </div>
         <div className="max-w-7xl mx-auto pt-12 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6">
           <p className="text-sm opacity-40">© 2026 Comercel. Todos los derechos reservados.</p>
-          <p className="text-sm opacity-40">Powered by Neopoint</p>
+          <a href="https://neopoint.mx" target="_blank" rel="noopener noreferrer" className="text-sm opacity-40 hover:opacity-100 transition-opacity">
+            Powered by Neopoint
+          </a>
         </div>
       </footer>
       {/* Catalog Modal */}
