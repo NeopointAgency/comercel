@@ -385,7 +385,7 @@ export default function App() {
                 rel="noopener noreferrer"
                 className="px-12 py-5 bg-comercel-green text-white font-bold rounded-2xl flex items-center justify-center gap-3 hover:bg-green-600 transition-all shadow-xl shadow-comercel-green/20"
               >
-                <MessageCircle className="w-6 h-6" />
+                <img src="/whatsapp-icon.png" alt="WhatsApp" className="w-6 h-6 object-contain" />
                 Hablar con un experto
               </a>
             </div>
@@ -499,7 +499,7 @@ export default function App() {
                       rel="noopener noreferrer"
                       className="w-full py-4 bg-white border border-comercel-green text-comercel-green font-bold rounded-2xl flex items-center justify-center gap-3 hover:bg-comercel-green/5 transition-colors"
                     >
-                      <MessageCircle className="w-5 h-5" />
+                      <img src="/whatsapp-icon.png" alt="WhatsApp" className="w-5 h-5 object-contain" />
                       Preguntar por WhatsApp
                     </a>
                     <button
@@ -551,7 +551,7 @@ export default function App() {
         <div className="absolute right-full mr-4 bg-white text-comercel-dark px-4 py-2 rounded-xl text-sm font-bold shadow-xl opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
           ¿En qué podemos ayudarte?
         </div>
-        <MessageCircle className="w-8 h-8 fill-current" />
+        <img src="/whatsapp-icon.png" alt="WhatsApp" className="w-10 h-10 object-contain" />
       </motion.a>
     </div>
   );
