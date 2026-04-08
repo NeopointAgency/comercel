@@ -47,13 +47,13 @@ export default function App() {
     });
 
     // Stats Image Expansion/Shrink Animation
-    gsap.fromTo(".stats-img-container", 
-      { 
+    gsap.fromTo(".stats-img-container",
+      {
         width: "100%",
         borderRadius: 0,
         scale: 1.1
       },
-      { 
+      {
         width: isMobile ? "90%" : "85%",
         maxWidth: "1024px",
         borderRadius: isMobile ? 30 : 60,
@@ -297,7 +297,7 @@ export default function App() {
           <div className="max-w-7xl mx-auto relative z-10">
             <div>
               <h2 className="text-4xl md:text-5xl font-extrabold leading-tight mb-8 text-white">
-                Por qué comprar con Comercel <br />
+                Por qué comprar <br /> con Comercel
                 cambia tu operación
               </h2>
               <p className="text-xl opacity-90 mb-12 max-w-2xl leading-relaxed">
@@ -340,7 +340,7 @@ export default function App() {
               />
             </div>
           </div>
-          
+
           <div className="max-w-7xl mx-auto px-6 text-center">
             <h2 className="stats-title text-5xl md:text-6xl font-extrabold mb-16 leading-tight text-comercel-dark">
               Respaldo que <br />
